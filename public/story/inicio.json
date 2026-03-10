@@ -1,0 +1,15 @@
+{
+  "id": "inicio",
+  "texto": "A noite pesa sobre a floresta. A chuva cai forte, misturada a trovões que fazem o chão tremer sob seus pés. Seus passos afundam na lama, e cada relâmpago revela sombras distorcidas entre as árvores.\n\nVocê está perdido.\n\nEm um clarão mais intenso, algo surge adiante: uma cabana antiga, isolada, completamente escura. A porta parece entreaberta, balançando com o vento.\n\nA tempestade piora.\nVocê precisa decidir.",
+  "audio": "inicio.ogg",
+  "opcoes": [
+    {
+      "texto": "Seguir para dentro da floresta",
+      "proxima": "floresta"
+    },
+    {
+      "texto": "Entrar na cabana escura",
+      "proxima": "cabana"
+    }
+  ]
+}

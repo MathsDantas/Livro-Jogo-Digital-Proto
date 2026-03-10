@@ -1,0 +1,15 @@
+{
+  "id": "cabana",
+  "texto": "Você empurra a porta da cabana. O interior é silencioso demais para uma noite de tempestade. Poeira cobre os móveis e o ar parece parado.\n\nNo fundo da sala existem duas portas antigas. Acima de uma há o símbolo de uma lua crescente. Na outra, uma estrela entalhada.\n\nEntre elas, uma frase quase apagada:\n\n“Alguns seguem a estrela para encontrar o caminho. Outros esperam a lua para ver o que estava oculto.”",
+  "audio": "cabana.ogg",
+  "opcoes": [
+    {
+      "texto": "Abrir a porta da lua",
+      "proxima": "fase2"
+    },
+    {
+      "texto": "Abrir a porta da estrela",
+      "proxima": "desvio_espelho"
+    }
+  ]
+}
