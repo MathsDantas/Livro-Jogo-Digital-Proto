@@ -1,0 +1,6 @@
+{
+  "id": "falha_relogio",
+  "texto": "Você coloca o relógio quebrado no pedestal.\n\nPor um instante nada acontece. Então um estalo ecoa pela sala.\n\nO pedestal trava com força e as pedras ao redor começam a se mover lentamente. A porta por onde você entrou se fecha com um golpe seco.\n\nO relógio continua parado.\n\nE agora você também.",
+  "audio": "falha_relogio.ogg",
+  "opcoes": []
+}
