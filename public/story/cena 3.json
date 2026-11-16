@@ -1,0 +1,11 @@
+{
+  "id": "cena 3",
+  "texto": "Vocês são levados até a casa central e postos numa sala com mesas e cadeiras. Pela outra porta da sala, entra um homem bem-vestido, de longos cabelos negros e barba cerrada, com um olhar astuto e vil. Quando ele entra, todos batem continência.\n\nPelo jeito, é ele quem está no comando por aqui.\n\nEle olha vocês com desprezo e pergunta em bom espanhol qual de vocês é o chefe. Gaspar Corrêa se apresenta. \"Capitão Domingos Gaspar Corrêa.\"\n\n\"Que lengua es essa?\" Estranha o comandante.\n\n\"Portuguese, signore,\" responde um dos soldados.\n\nComo se estivesse diante de prisioneiros de guerra, o militar dispara uma série de perguntas, querendo saber se vocês conhecem Fernão Dias Pais, Bartolomeu Bueno da Silva, que atende pelo codinome de Anhanguera, se vocês reconhecem o Tratado de Tordesilhas e parece muito intrigado sobre como vocês chegaram até aquele local e principalmente o que vocês procuram no sertão.\n\nEntão, ele para por um momento, dizendo que já sabe o que vocês buscam. \"Los martírios!\" Ele exclama, com um sorriso sinistro e depois completa: \"pois então ... serão martirizados!\"",
+  "audio": "Cena 3.ogg",
+  "opcoes": [
+    {
+      "texto": "Aguardar o que o comandante fará",
+      "proxima": "cena 4"
+    }
+  ]
+}

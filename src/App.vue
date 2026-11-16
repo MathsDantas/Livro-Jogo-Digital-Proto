@@ -5,19 +5,14 @@
     </div>
 
     <!-- Audio -->
-    <audio
-      ref="bg"
-      src="/audio/bg.ogg"
-      loop
-      preload="auto"
-    />
+    <audio ref="bg" src="/audio/bg.ogg" loop preload="auto" />
 
     <!-- Botão Flutuante -->
-<button class="audio-button" @click="toggleAudio">
-  <span class="icon">
-    {{ isPlaying ? '🔊' : '🔇' }}
-  </span>
-</button>
+    <button class="audio-button" @click="toggleAudio">
+      <span class="icon">
+        {{ isPlaying ? '🔊' : '🔇' }}
+      </span>
+    </button>
 
     <!-- Tooltip inicial -->
     <div v-if="showTooltip" class="audio-tooltip">
@@ -79,7 +74,7 @@ const toggleAudio = async () => {
 <style>
 .app-background {
   min-height: 100vh;
-  background-image: url('@/assets/backgrounds/floresta.gif');
+  background-image: url('@/assets/backgrounds/No Coração dos Deuses.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -87,11 +82,13 @@ const toggleAudio = async () => {
 
 .overlay {
   min-height: 100vh;
-  background: rgba(0, 0, 0, 0.744); /* escurece o fundo */
+  background: rgba(0, 0, 0, 0.744);
+  /* escurece o fundo */
   display: flex;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -105,8 +102,10 @@ body, html {
   height: 55px;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 50%;
-  display: grid;              /* 👈 melhor que flex para centro exato */
-  place-items: center;        /* 👈 centraliza perfeito */
+  display: grid;
+  /* 👈 melhor que flex para centro exato */
+  place-items: center;
+  /* 👈 centraliza perfeito */
   cursor: pointer;
   z-index: 999;
   border: none;
@@ -117,7 +116,8 @@ body, html {
   font-size: 22px;
   line-height: 1;
   display: inline-block;
-  transform: translateY(1px); /* 👈 ajuste fino REAL */
+  transform: translateY(1px);
+  /* 👈 ajuste fino REAL */
 }
 
 .audio-button:hover {
@@ -139,8 +139,16 @@ body, html {
 }
 
 @keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.07); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.07);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

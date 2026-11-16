@@ -1,29 +1,23 @@
 <template>
   <div class="page-wrapper" v-if="scene">
     <div class="book-container">
-
       <p class="scene-text">
-        {{ displayedText }}
+        <template v-for="(paragraph, index) in displayedParagraphs" :key="index">
+          {{ paragraph }}<br v-if="index < displayedParagraphs.length - 1" />
+        </template>
       </p>
 
       <div class="options" v-if="showOptions">
-        <button
-          v-for="opcao in visibleOptions"
-          :key="opcao.texto"
-          @click="loadScene(opcao.proxima)"
-          class="fade-option"
-        >
+        <button v-for="opcao in visibleOptions" :key="opcao.texto" @click="loadScene(opcao.proxima)"
+          class="fade-option">
           {{ opcao.texto }}
         </button>
       </div>
-
     </div>
 
-    <!-- MODAL DE FALHA -->
     <div v-if="showFailModal" class="fail-overlay">
       <div class="fail-modal">
         <h1>Você Falhou</h1>
-
         <button class="restart-btn" @click="goHome">
           Voltar ao início
         </button>
@@ -32,9 +26,7 @@
 
     <div v-if="showVictoryModal" class="victory-overlay">
       <div class="victory-modal">
-
         <h1>Você conseguiu sobreviver à noite na floresta!</h1>
-
         <p class="victory-sub">
           Quais mistérios ainda existem na floresta?
         </p>
@@ -42,15 +34,13 @@
         <button class="restart-btn" @click="goHome">
           Jogar novamente
         </button>
-
       </div>
     </div>
-
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 const showFailModal = ref(false)
 let failAudio: HTMLAudioElement | null = null
@@ -77,6 +67,12 @@ const showOptions = ref(false)
 const visibleOptions = ref<Opcao[]>([])
 
 let audio: HTMLAudioElement | null = null
+let typingFrame: number | null = null
+
+const displayedParagraphs = computed(() => {
+  if (!displayedText.value) return []
+  return displayedText.value.split('\n\n').filter(Boolean)
+})
 
 const showVictory = () => {
   showVictoryModal.value = true
@@ -87,8 +83,11 @@ const showVictory = () => {
 }
 
 const loadScene = async (sceneId: string) => {
+  if (typingFrame !== null) {
+    cancelAnimationFrame(typingFrame)
+    typingFrame = null
+  }
 
-  // limpa áudio anterior
   if (audio) {
     audio.pause()
     audio.currentTime = 0
@@ -110,27 +109,22 @@ const loadScene = async (sceneId: string) => {
   audio.preload = 'auto'
   audio.volume = 1
 
-  // inicia animação quando metadados carregarem
   audio.addEventListener('loadedmetadata', () => {
     startTyping()
   })
 
-const sceneType = scene.value.tipo
-const hasOptions = scene.value.opcoes.length > 0
+  const sceneType = scene.value.tipo
+  const hasOptions = scene.value.opcoes.length > 0
 
-audio.addEventListener('ended', () => {
-
-  if (!hasOptions) {
-
-    if (sceneType === 'vitoria') {
-      showVictory()
-    } else {
-      showFail()
+  audio.addEventListener('ended', () => {
+    if (!hasOptions) {
+      if (sceneType === 'vitoria') {
+        showVictory()
+      } else {
+        showFail()
+      }
     }
-
-  }
-
-})
+  })
 
   audio.play()
 }
@@ -150,33 +144,39 @@ const goHome = () => {
 const startTyping = () => {
   if (!scene.value || !audio) return
 
-  const fullText = scene.value.texto
-  const duration = audio.duration
+  const currentScene = scene.value
+  const currentAudio = audio
+  const fullText = currentScene.texto
+  const duration = currentAudio.duration
 
-  const totalChars = fullText.length
-  const intervalTime = (duration * 800) / totalChars
+  displayedText.value = ''
+  const updateText = () => {
+    if (audio !== currentAudio || scene.value !== currentScene) return
 
-  let index = 0
+    const progress = Math.min(currentAudio.currentTime / duration, 1)
+    displayedText.value = fullText.slice(0, Math.floor(progress * fullText.length))
 
-  const typingInterval = setInterval(() => {
-    displayedText.value += fullText[index]
-    index++
+    if (progress >= 1) {
+      displayedText.value = fullText
+      typingFrame = null
 
-    if (index >= totalChars) {
-      clearInterval(typingInterval)
-
-      // só mostra opções se existirem
-      if (scene.value.opcoes.length > 0) {
+      if (currentScene.opcoes.length > 0) {
         showOptions.value = true
 
-        scene.value.opcoes.forEach((opcao, index) => {
+        currentScene.opcoes.forEach((opcao, i) => {
           setTimeout(() => {
             visibleOptions.value.push(opcao)
-          }, index * 400)
+          }, i * 400)
         })
       }
+
+      return
     }
-  }, intervalTime)
+
+    typingFrame = requestAnimationFrame(updateText)
+  }
+
+  typingFrame = requestAnimationFrame(updateText)
 }
 
 onMounted(() => {
@@ -188,67 +188,55 @@ onMounted(() => {
 .page-wrapper {
   width: 100%;
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 40px 0;
   box-sizing: border-box;
 }
 
 .book-container {
-  width: 480px;
+  width: 1220px;
   padding: 50px 40px;
   color: white;
-
   display: flex;
   flex-direction: column;
 }
 
-/* Texto da cena */
 .scene-text {
   font-size: 24px;
   line-height: 1.9;
   text-align: justify;
   text-indent: 20px;
   hyphens: auto;
-
-  min-height: 18em; /* reduz o espaço vazio */
+  min-height: 18em;
   margin-bottom: 10px;
 }
 
-/* Container das opções */
 .options {
   text-align: center;
   margin-top: 10px;
 }
 
-/* Botões da história */
 .options button {
-  font-family: inherit; /* usa fonte global */
+  font-family: inherit;
   padding: 14px 20px;
   font-size: 18px;
   cursor: pointer;
-
   width: 100%;
   margin-bottom: 12px;
-
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.6);
-  color: rgba(255,255,255,0.9);
-
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
   transition: all 0.25s ease;
 }
 
-/* Hover */
 .options button:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   border-color: white;
   color: white;
 }
 
-/* Animação de entrada */
 .fade-option {
   opacity: 0;
   animation: fadeIn 0.8s forwards;
@@ -266,13 +254,10 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-
-  background: rgba(0,0,0,0.85);
-
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
-
   backdrop-filter: blur(4px);
 }
 
@@ -289,13 +274,10 @@ onMounted(() => {
 .restart-btn {
   font-family: inherit;
   font-size: 22px;
-
   padding: 16px 28px;
-
   background: transparent;
   border: 2px solid white;
   color: white;
-
   cursor: pointer;
   transition: 0.3s;
 }
@@ -311,13 +293,10 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-
-  background: rgba(0,0,0,0.85);
-
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
-
   backdrop-filter: blur(4px);
 }
 

@@ -1,0 +1,11 @@
+{
+  "id": "cena 4",
+  "texto": "Saindo da sala do comandante, vocês são levados até um porão, transformado em uma autêntica sala de torturas. Com a voz dura como o aço, o torturador fala para que todos vocês ouçam bem: \"Vocês só podem ter chegado aqui com um mapa. Eu quero esse mapa!\"\n\nEm seguida, Gabriel, Tauana e o capelão são presos em instrumentos de ferro. Gaspar Corrêa é amarrado a uma grande roda dentada, enquanto Simão é acorrentado a um pelourinho e chicoteado como os escravos de antigamente. Somente você ficou livre e assiste horrorizado enquanto seus companheiros são torturados impiedosamente.\n\nE agora, o que você pode fazer para livrar seus companheiros desse sofrimento?\n\nPor acaso você tem algum mapa para entregar ao torturador?",
+  "audio": "Cena 4.ogg",
+  "opcoes": [
+    {
+      "texto": "Tirar um mapa da manga!",
+      "proxima": "cena 5"
+    }
+  ]
+}

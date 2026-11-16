@@ -1,0 +1,11 @@
+{
+  "id": "cena 2",
+  "texto": "“Vamos nos esgueirar até o portão do forte, tentando evitar que o vigia nos veja”, Gabriel sugere. Apontando com a espada, Gaspar Corrêa avisa os demais: “Avancem, mas com cautela!”\n\nDecidido, ele se levanta e vai abrindo caminho na direção do portão. Porém, bastou vocês darem alguns passos para fora da cobertura das moitas para o vigia os avistar e dar o alarme: “Invasores! Invasores! Alerta geral!”\n\nEm pouco tempo, vários soldados armados saem de dentro do forte e os cercam. Apanhados de surpresa, vocês nem tentam resistir e são facilmente capturados.\n\nVocê pode até imaginar Tauana dizendo: “Isto não é tarefa para branco!” e logo depois avista a índia saindo do mato e tentando atrair a atenção dos guardas: “Soldados! Soldados!”, grita ela, agitando os braços. “Tauana aqui, Tauana aqui!”",
+  "audio": "Cena 2.ogg",
+  "opcoes": [
+    {
+      "texto": "Encarar seu destino",
+      "proxima": "cena 3"
+    }
+  ]
+}

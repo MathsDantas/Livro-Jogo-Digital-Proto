@@ -1,0 +1,11 @@
+{
+  "id": "cena 1.2",
+  "texto": "Escondidos na floresta, vocês observam o forte com cuidado. \"Só tem um cara vigiando,\" diz Gabriel, forçando a vista e apontando para o alto da torre de bambu. Sacando a espada, Gaspar Corrêa ordena: \"Vamos nos aproximar agora. E à noite atacaremos!\".\n\nEnquanto o grupo vai deixando suas coisas e sacando as armas, o capitão diz a Tauana que ela não deve acompanhá-los. \"Aguarde aqui\", ele diz. \"Isto não é tarefa para mulheres...\"\n\nA índia não parece muito satisfeita com isso, mas aceita a missão de vigiar os pertences do grupo, enquanto os homens avançam agachados, tentando se esconder por trás das moitas e pedras que cercam o forte. Quando chegam à frente da fortaleza, Gaspar Corrêa hesita e você pergunta: \"E agora, para que lado nós vamos?\"",
+  "audio": "Cena 1.2.ogg",
+  "opcoes": [
+    {
+      "texto": "Ir em direção ao forte",
+      "proxima": "cena 2"
+    }
+  ]
+}
